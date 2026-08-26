@@ -1,0 +1,14 @@
+# Backend configuration example
+# Copy this file to backend.tf and fill in the values for your environment.
+# backend.tf is gitignored to prevent committing environment-specific state config.
+
+terraform {
+  backend "s3" {
+    bucket         = "my-infra-tfstate"
+    key            = "stacks/<stack-name>/terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "db-terraform-lock"
+    encrypt        = true
+    profile        = "default"
+  }
+}
